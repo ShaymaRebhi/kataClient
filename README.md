@@ -9,4 +9,4 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Screenshot
 
-  ![micro](https://i.postimg.cc/zfjTrPp4/localhost.png)
+  ![micro](https://i.postimg.cc/vTNRDsLj/localhost.png)
