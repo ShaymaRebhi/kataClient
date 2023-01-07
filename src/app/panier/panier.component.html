@@ -1,0 +1,66 @@
+<div class="row p-3 ">
+<form name="myForm" #f="ngForm">
+  <div class="row mt-2">
+
+    <div class="col ">
+      <input type="text" name="description"  #d="ngModel" required minlength="3"  class="form-control" placeholder="product name" [(ngModel)]="panier.description" >
+      <div class="alert alert-danger" *ngIf="d.touched&&d.invalid">
+        <div *ngIf="d.hasError('required')">Product name is required</div>
+        <div *ngIf="d.hasError('minlength')">Min Length is 3</div>
+      </div>
+    </div>
+    <div class="col">
+      <input type="number"  #c="ngModel" required min=1 name="count" class="form-control" placeholder="Quantity" [(ngModel)]="panier.count" >
+      <div class="alert alert-danger" *ngIf="c.touched&&c.invalid">
+        <div *ngIf="c.hasError('required')">Quantity is required</div>
+        <div *ngIf="c.hasError('min')">Min quantity is 1</div>
+      </div>
+    </div>
+    <div class="col">
+      <input type="number" name="unitPrice" #p="ngModel" required  class="form-control" placeholder="Price "[(ngModel)]="panier.unitPrice" >
+      <div class="alert alert-danger" *ngIf="p.touched&&p.invalid">
+        <div *ngIf="p.hasError('required')">unitPrice is required</div>
+      </div>
+    </div>
+    <div class="col">
+      <select type="text" name="category"  required class="form-control"  [(ngModel)]="panier.category" >
+        <option value="" selected disabled>category</option>
+        <option value="FOOD"> FOOD </option>
+        <option value="MEDICAL_PRODUCTS"> MEDICAL_PRODUCTS </option>
+        <option value="BOOK">BOOK</option>
+        <option value="OTHER_PRODUCTS">OTHER_PRODUCTS</option>
+      </select>
+    </div>
+    <div class="col">
+      <input type="text" name="imported" class="form-control" placeholder="Imported " [(ngModel)]="panier.imported" >
+    </div>
+    <div class="col">
+      <button type="button"  class="btn btn-success" (click)="ajouterLigneCommande()" [disabled]="f.invalid">+</button>
+      <button class="btn btn-danger" (click)="f.reset()">reset</button>
+    </div>
+  </div>
+</form>
+<!--  detail commande-->
+  <div class=" col mt-2 p-3 " style="max-height: 200px ; overflow: scroll">
+  <app-product *ngFor="let ligne of LignesCommande"
+  [LineCommande]="ligne"></app-product>
+  </div>
+
+</div>
+<div class=" col mt-2 p-3  text-right" *ngIf="result">
+  <h3>Montant des taxes : {{result.salesTax}}</h3>
+  <h3>Total de la commande : {{result.total}}</h3>
+  <br>
+  <br>
+  <h2 style="color:rebeccapurple;">Details : </h2>
+  <table class="table table-hover">
+    <thead>
+    <tr></tr>
+    </thead>
+    <tbody>
+   <tr *ngFor="let result of result.product">
+    <td><h4>{{result.count}} {{result.description}}  a {{result.unitPrice}}$ : {{result.pttc}}$</h4></td>
+   </tr>
+    </tbody>
+  </table>
+</div>
