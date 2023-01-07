@@ -32,7 +32,11 @@
       </select>
     </div>
     <div class="col">
-      <input type="text" name="imported" class="form-control" placeholder="Imported " [(ngModel)]="panier.imported" >
+      <select type="text" name="imported" class="form-control" placeholder="Imported " [(ngModel)]="panier.imported" >
+        <option value="" selected disabled>Imported ? </option>
+        <option value="true"> YES </option>
+        <option value="false"> NO </option>
+      </select>
     </div>
     <div class="col">
       <button type="button"  class="btn btn-success" (click)="ajouterLigneCommande()" [disabled]="f.invalid">+</button>
